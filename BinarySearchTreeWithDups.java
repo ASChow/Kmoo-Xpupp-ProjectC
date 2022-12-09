@@ -26,10 +26,9 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	private T addEntryHelperNonRecursive(T newEntry) {
 		T result = null;
 		boolean done = false;
-		// need to write as a loop to find the position
 		BinaryNode<T> rootNode = getRootNode();
 		
-		
+		// need to write as a loop to find the position		
 		while (!done) {
 			int comparison = newEntry.compareTo(rootNode.getData());
 			if (comparison <= 0) {
@@ -70,9 +69,34 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 		
 		// this initial code is meant as a suggestion to get your started- use it or delete it!
 		int count = 0;
+		boolean done = false;
 		BinaryNode<T> currentNode = getRootNode();
+		while (!done) {
+			int comparison = target.compareTo(currentNode.getData());
+			if (comparison <= 0) {
+				if (comparison == 0) {
+					count++;
+				}
+				//left subtree for equals and lower
+				if (currentNode.hasLeftChild()) {
+					//keep going, there are more
+					currentNode = currentNode.getLeftChild();
+				} else {
+					done = true;
+				}
+				
+			} else { //greater than
+				
+				if (currentNode.hasRightChild()) {
+					currentNode = currentNode.getRightChild();
+				} else {
+					done = true;
 
-		// consider a loop!
+				}
+			}
+			
+			
+		}
 	
 		return count; 
 	}
